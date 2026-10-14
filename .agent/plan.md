@@ -1,27 +1,26 @@
 # Project Plan
 
-Lesson 6 Practical — Building the Tenant Management Screen using XML, ConstraintLayout, View Binding, and Data Binding as detailed in the lesson guide.
+Lesson 7 Practical — Authentication & Intents in Tenant Management App using Android XML, ConstraintLayout, View Binding, Data Binding, and Activities.
 
 ## Project Brief
 
-# Project Brief: Tenant Management Screen App
+# Project Brief: Tenant Management App (MVP)
 
 ## Features
-1. **Tenant List View**: Display a structured list of tenants showing summary details (name, apartment/unit number, rent payment status) using XML layouts and Data Binding.
-2. **Tenant Detail View**: Display detailed tenant profiles, contact information, and lease status.
-3. **Add & Edit Tenant**: Form interface for adding new tenant records or updating existing details using two-way Data Binding.
-4. **Tenant Search & Filter**: Search tenant records by name or filter by unit number and payment status.
+1. **User Authentication**: Login and registration flows using Android Activities to securely authenticate users.
+2. **Tenant Directory & Details View**: Display tenant information in structured layouts using Data Binding to link tenant data directly to UI components.
+3. **Intent-Based Communication**: Trigger implicit Android Intents for tenant contact actions such as phone calls, SMS messaging, and emailing.
+4. **Screen Navigation**: Use explicit Intents to seamlessly navigate between app screens (Auth, Dashboard, Tenant Profile).
 
 ## High-Level Tech Stack
 - **Language**: Kotlin
-- **Data Model**: Kotlin Data Class (`Tenant.kt`)
-- **UI Framework & Layout**: Android XML Layouts with `ConstraintLayout`
-- **UI Binding**: Android View Binding and Data Binding
-- **Architecture**: MVVM (`ViewModel`, `LiveData` / `StateFlow`)
-- **Concurrency**: Kotlin Coroutines
+- **UI Architecture & Layouts**: Android XML Layouts, ConstraintLayout
+- **Data & View Binding**: View Binding and Data Binding
+- **Core Architecture**: Android Activities, Kotlin Coroutines, LiveData / ViewModel
+- **Navigation & System Integration**: Explicit Intents (Activity-to-Activity navigation) and Implicit Intents (Phone, Email, SMS)
 
 ## Implementation Steps
-**Total Duration:** 20m 10s
+**Total Duration:** 73h 16m 55s
 
 ### Task_1_SetupBindingAndDataModel: Enable View Binding and Data Binding in build.gradle.kts, sync project, and create the Tenant data model class (Tenant.kt) with name, phone, rent fields and summary() method.
 - **Status:** COMPLETED
@@ -53,12 +52,34 @@ Lesson 6 Practical — Building the Tenant Management Screen using XML, Constrai
 - **Duration:** 4m 20s
 
 ### Task_4_RunAndVerify: Run and verify the Tenant Management Screen app, instruct critic_agent to verify application stability (no crashes), confirm alignment with user requirements, and report critical UI issues.
-- **Status:** IN_PROGRESS
-- **Updates:** Theme crash fixed in themes.xml. Starting verification again.
+- **Status:** COMPLETED
+- **Updates:** All implementation steps and Try It Yourself requirements completed. App successfully built and ran on device/emulator without errors.
 - **Acceptance Criteria:**
   - app does not crash
   - build pass
   - make sure all existing tests pass
   - all features verified
-- **StartTime:** 2026-10-04 23:45:18 EAT
+- **Duration:** 72h 36m 51s
+
+### Task_5_ImplementAuthAndIntents: Implement LoginActivity and RegisterActivity with layouts (activity_login.xml, activity_register.xml), explicit intents for screen navigation, ACTION_VIEW for external link, and update AndroidManifest.xml launcher. Update MainActivity with login email Toast, full field validation, and CALL TENANT (ACTION_DIAL) / SHARE (ACTION_SEND) implicit intents.
+- **Status:** COMPLETED
+- **Updates:** Implemented LoginActivity, RegisterActivity, activity_login.xml, activity_register.xml, AndroidManifest.xml launcher updates, and MainActivity updates for Login Toast, full field validation, CALL TENANT (ACTION_DIAL), and SHARE (ACTION_SEND). Build passed cleanly.
+- **Acceptance Criteria:**
+  - LoginActivity and RegisterActivity created with XML layouts
+  - LoginActivity set as launcher activity in AndroidManifest.xml
+  - Explicit intents navigate between LoginActivity, RegisterActivity, and MainActivity passing email extra
+  - ACTION_VIEW implicit intent opens website link from LoginActivity
+  - MainActivity displays Toast on launch with logged in email and validates Name, Phone, Rent fields
+  - CALL TENANT uses ACTION_DIAL and SHARE uses ACTION_SEND with fallback Toast if no tenant saved
+  - build pass
+- **Duration:** 4m 6s
+
+### Task_6_RunAndVerify: Run and verify the full Tenant Management App with Authentication and Intents, instruct critic_agent to verify application stability (no crashes), confirm alignment with user requirements, and report critical UI issues.
+- **Status:** COMPLETED
+- **Updates:** Verified all flows on phone emulator: LoginActivity launcher, RegisterActivity account creation with email passing, Login to MainActivity navigation with email extra, login Toast, field validation errors, tenant saving, ACTION_DIAL call tenant dialer, and ACTION_SEND share chooser. Zero crashes, zero errors.
+- **Acceptance Criteria:**
+  - app does not crash
+  - build pass
+  - make sure all existing tests pass
+- **Duration:** 15m 48s
 
